@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     if (username == correctUsername && password == correctPassword) {
+      // If both username and password are correct, navigate to DashboardPage
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -25,9 +26,21 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Username atau Password salah!')),
-      );
+      // Check if the username is incorrect
+      if (username != correctUsername) {
+        // Show a SnackBar indicating the username is incorrect
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Username salah!')),
+        );
+      }
+
+      // Check if the password is incorrect
+      if (password != correctPassword) {
+        // Show a SnackBar indicating the password is incorrect
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Password salah!')),
+        );
+      }
     }
   }
 
